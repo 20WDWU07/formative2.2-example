@@ -14,7 +14,8 @@ var cats = [
         description : 'The Siamese cat is one of the first distinctly recognized breeds of Asian cat. ' +
         'Derived from the Wichianmat landrace, one of several varieties of cat native to Thailand ' +
         '(formerly known as Siam), the original Siamese became one of the most popular breeds in Europe ' +
-        'and North America in the 19th century. '
+        'and North America in the 19th century. ',
+        tagWords : ['furry', 'brown', 'siamese', 'asian', 'wichianmat landrace','thailand', 'siam', 'europe','north america','19th century']
 
       },
       {
@@ -30,7 +31,8 @@ var cats = [
           '  as Persia in the west) around 1620.[1][2] Recognized by the cat fancy since the late 19th ' +
           '  century, it was developed first by the English, and then mainly by American breeders after ' +
           '  the Second World War. Some cat fancier organizations\' breed standards subsume the Himalayan ' +
-          '  and Exotic Shorthair as variants of this breed, while others treat them as separate breeds. '
+          '  and Exotic Shorthair as variants of this breed, while others treat them as separate breeds. ',
+        tagWords : ['whisky','white','persian','19th century']
 
       },
 
@@ -43,7 +45,8 @@ var cats = [
         photo : 'maine-coon2.jpeg',
         description : 'The Maine Coon is the largest domesticated cat breed. It has a distinctive '+
         'physical appearance and valuable hunting skills. It is one of the oldest natural breeds in North America,' +
-         'specifically native to the US state of Maine,[3] where it is the official state cat.'
+         'specifically native to the US state of Maine,[3] where it is the official state cat.',
+        tagWords : ['coony', 'brown', 'maine coon', 'cool' ]
 
       },
 
@@ -58,7 +61,8 @@ var cats = [
         'They are large and muscular semi-longhair cats with a soft and silky coat. Developed ' +
         'by American breeder Ann Baker in the 1960s, they are best known for their docile and placid ' +
         ' temperament and affectionate nature. The name "Ragdoll" is derived from the tendency of individuals ' +
-        'from the original breeding stock to go limp and relaxed when picked up'
+        'from the original breeding stock to go limp and relaxed when picked up',
+        tagWords : ['raggy', 'white', 'ragdoll', 'rag doll']
 
       },
       {
@@ -68,7 +72,8 @@ var cats = [
         breed : 'Maine Coon',
         behaviour : 'Cool',
         photo : 'maine-coon3.jpeg',
-        description : ''
+        description : '',
+        tagWords : ['jack','brown', 'white']
 
       },
       {
@@ -78,7 +83,8 @@ var cats = [
         breed : 'Persian',
         behaviour : 'Lazy',
         photo : 'persian2.jpeg',
-        description : ''
+        description : '',
+        tagWords : ['brown']
       },
       {
         id : 104,
@@ -87,7 +93,8 @@ var cats = [
         breed : 'Maine Coon',
         behaviour : 'Friendly',
         photo : 'maine-coon1.jpeg',
-        description : ''
+        description : '',
+        tagWords : ['black','friendly']
 
       },
       {
@@ -97,7 +104,8 @@ var cats = [
         breed : 'Rag Doll',
         behaviour : 'Lazy',
         photo : 'ragdoll1.jpeg',
-        description : ''
+        description : '',
+        tagWords : ['brown','black','dolly']
 
       },
       {
@@ -107,7 +115,8 @@ var cats = [
         breed : 'Siamese',
         behaviour : 'Lazy',
         photo : 'siamese3.jpeg',
-        description : ''
+        description : '',
+        tagWords : ['white','siamese','siam']
       },
       {
         id : 210,
@@ -116,7 +125,8 @@ var cats = [
         breed : 'Rag Doll',
         behaviour : 'Cool',
         photo : 'ragdoll3.jpeg',
-        description : ''
+        description : '',
+        tagWords : ['brown','cool']
 
       },
       {
@@ -126,7 +136,8 @@ var cats = [
         breed : 'Persian',
         behaviour : 'Lazy',
         photo : 'persian3.jpeg',
-        description : ''
+        description : '',
+        tagWords : ['white','persian']
       },
       {
         id : 105,
@@ -135,7 +146,8 @@ var cats = [
         breed : 'Siamese',
         behaviour : 'Friendly',
         photo : 'siamese2.jpeg',
-        description : ''
+        description : '',
+        tagWords : ['black','white','siamese','siam','friendly']
 
       }
 
@@ -207,6 +219,26 @@ $('#showSelection').click(function(){
   filteredBehaviour(behaviour);
 });
 
+// ==========================================================
+// Search by word
+// ==========================================================
+$('#searchWord').click(function(){
+  $(this).val('');
+});
+
+$('#searchIcon').click(function(){
+  var searchWord = $('#searchWord').val();
+  console.log(searchWord);
+  filterByWord(searchWord);
+
+});
+// ==========================================================
+// Sort by selection
+// ==========================================================
+$('#sortBtn').change(function(){
+  var sortType = $('#sortBtn').val();
+  console.log(sortType);
+})
 
 // ==========================================================
 // Function to display all items
@@ -373,7 +405,23 @@ function filteredBehaviour(catBehaviour){
   }//for i
 }//filteredBehaviour
 
+// ==========================================================
+// Filter by word
+// ==========================================================
+function filterByWord(word){
+  console.log(word);
+  var i,j;
+  $('#result').text('');
+  for (i = 0 ; i < cats.length; i++){
+    for (j = 0; j < cats[i].tagWords.length; j++){
 
+      if (word.toLowerCase() === cats[i].tagWords[j]){
+        displayCards(i);
+        cardModal();
+      }//if
+    }//for j
+  }//for i
+}//filterByWord
 
 // ==========================================================
 // Display cards

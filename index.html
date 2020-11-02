@@ -12,7 +12,33 @@
 
       <div class="jumbotron">
           <h1 class="text-light text-center">Cat club</h1>
-          <button id="refresh" class="btn border border-light rounded-pill text-light m-auto d-block" type="button" name="button">Refresh All</button>
+
+          <div class="row clearfix">
+
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <button id="refresh" class="btn border border-light rounded-pill text-light" type="button" name="button">Refresh All</button>
+          </div>
+
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-center">
+            <select class="sortBtn rounded-pill" name="" id="sortBtn">
+              <option value="">Sort by</option>
+              <option value="Names">Names A-Z</option>
+              <option value="Breed">Breed A-Z</option>
+              <option value="Color">Color A-Z</option>
+              <option value="BehaviourAZ">Behaviour A-Z</option>
+              <option value="BehaviourZA">Behaviour Z-A</option>
+
+            </select>
+          </div>
+
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-right" >
+            <input class="searchWord rounded-pill" type="text" name="" value="search" id="searchWord">
+
+            <img id="searchIcon" class="searchIcon" src="images/search.png" alt="Search icon">
+
+          </div>
+        </div>
+
       </div>
 
 
