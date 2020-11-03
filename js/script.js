@@ -159,10 +159,11 @@ var cats = [
 // ==========================================================
 // Function call to display all items
 // ==========================================================
-
+$('input[type=checkbox]').prop('checked',false);
 allCats(); //displays all items on home page
 
 $('#refresh').click(function(){
+  $('input[type=checkbox]').prop('checked',false);
   allCats();
 });
 
@@ -214,6 +215,7 @@ $('#showChoice').click(function(){
 // ==========================================================
 
 $('#showSelection').click(function(){
+  $('input[type=checkbox]').prop('checked',false);
   var behaviour = $('#behaviour').val();
   console.log(behaviour);
   filteredBehaviour(behaviour);
@@ -227,6 +229,7 @@ $('#searchWord').click(function(){
 });
 
 $('#searchIcon').click(function(){
+  $('input[type=checkbox]').prop('checked',false);
   var searchWord = $('#searchWord').val();
   console.log(searchWord);
   filterByWord(searchWord);
@@ -236,15 +239,124 @@ $('#searchIcon').click(function(){
 // Sort by selection
 // ==========================================================
 $('#sortBtn').change(function(){
-  var sortType = $('#sortBtn').val();
+  $('input[type=checkbox]').prop('checked',false);
+  var sortType = ($('#sortBtn').val()).toLowerCase();
   console.log(sortType);
-})
+
+  if ((sortType === 'name') || (sortType === 'color') ||(sortType === 'breed') || (sortType === 'behaviouraz')) {
+   sortByAscending(sortType);//calling function
+  }
+
+  if ((sortType === 'nameza') || (sortType === 'colorza') ||(sortType === 'breedza') || (sortType === 'behaviourza')) {
+   sortByDescending(sortType);//calling function
+  }
+
+
+  //recursive function
+  // cats.sort(function(a,b){
+  //   // compare 2 consecutive objects' name property
+  //   var itemA = a.name.toLowerCase(), itemB = b.name.toLowerCase();
+  //   if (itemA < itemB){
+  //     return -1; //false
+  //   }
+  //   if (itemA > itemB){
+  //     return 1; //true
+  //   }
+  //
+  // });
+  // console.log(cats);
+
+}); //sortBtn.change()
+
+//function definition
+function sortByAscending(dummySortType){
+  console.log(dummySortType);
+  cats.sort(function(a,b){
+    // compare 2 consecutive objects' name property
+
+    switch (dummySortType){
+      case 'name':
+            console.log('name');
+            var itemA = a.name.toLowerCase(), itemB = b.name.toLowerCase();
+            break;
+      case 'breed':
+            console.log('breed');
+            var itemA = a.breed.toLowerCase(), itemB = b.breed.toLowerCase();
+            break;
+      case 'color':
+            console.log('color');
+            var itemA = a.color.toLowerCase(), itemB = b.color.toLowerCase();
+            break;
+      case 'behaviouraz':
+            console.log('behaviour');
+            var itemA = a.behaviour.toLowerCase(), itemB = b.behaviour.toLowerCase();
+            break;
+      default :
+            console.log('not matching');
+    }//switch
+
+    if (itemA < itemB){
+      return -1; //false
+    }
+    if (itemA > itemB){
+      return 1; //true
+    }
+
+  });//cats.sort()
+      console.log(cats);
+      allCats();
+
+}//sortBySelection
+
+//function definition
+function sortByDescending(dummySortType){
+  console.log(dummySortType);
+  cats.sort(function(a,b){
+    // compare 2 consecutive objects' name property
+
+    switch (dummySortType){
+      case 'nameza':
+            console.log('name');
+            var itemA = a.name.toLowerCase(), itemB = b.name.toLowerCase();
+            break;
+      case 'breedza':
+            console.log('breed');
+            var itemA = a.breed.toLowerCase(), itemB = b.breed.toLowerCase();
+            break;
+      case 'colorza':
+            console.log('color');
+            var itemA = a.color.toLowerCase(), itemB = b.color.toLowerCase();
+            break;
+      case 'behaviourza':
+            console.log('behaviour');
+            var itemA = a.behaviour.toLowerCase(), itemB = b.behaviour.toLowerCase();
+            break;
+      default :
+            console.log('not matching');
+    }//switch
+
+    if (itemA > itemB){
+      return -1; //false
+    }
+    if (itemA < itemB){
+      return 1; //true
+    }
+
+  });//cats.sort()
+      console.log(cats);
+      allCats();
+
+}//sortBySelection
+
+
+
 
 // ==========================================================
 // Function to display all items
 // ==========================================================
 
 function allCats(){
+
   var i = 0;
   $('#result').text(' ');
   for (i = 0 ; i < cats.length; i++){
@@ -429,8 +541,8 @@ function filterByWord(word){
 
 function displayCards(j){
   //access properties of objects using index number
-  $('#result').append( '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-2">' +
-                          '<div class="card text-danger" style="width: 18rem;">' +
+  $('#result').append( '<div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 text-center">' +
+                          '<div class="card text-danger" >' +
                              '<img src="images/' + cats[j].photo + '" class="card-img-top" alt="' + cats[j].breed + '">' +
                              '<div class="card-body">' +
                               '<h1 class="card-title">'+ cats[j].breed + '</h1>' +
