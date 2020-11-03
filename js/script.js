@@ -163,9 +163,22 @@ $('input[type=checkbox]').prop('checked',false);
 allCats(); //displays all items on home page
 
 $('#refresh').click(function(){
-  $('input[type=checkbox]').prop('checked',false);
-  allCats();
+  cats.sort(function(a,b){
+   var itemA = a.id, itemB = b.id;
+   if (itemA < itemB){
+     return -1;
+   }
+   if (itemA > itemB){
+     return 1;
+   }
+   console.log(cats);
+ });
+ $('input[type=checkbox]').prop('checked',false);
+ allCats();//displays all items on home page
 });
+//   $('input[type=checkbox]').prop('checked',false);
+//   allCats();
+// });
 
 
 
