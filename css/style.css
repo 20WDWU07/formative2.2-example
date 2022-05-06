@@ -61,6 +61,12 @@ body {
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important; }
 
+#myCatCard{
+  height: 400px;
+  overflow-y: scroll;
+  margin: 20px;
+}
+
 hr {
   box-sizing: content-box;
   height: 0;

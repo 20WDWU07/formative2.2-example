@@ -554,7 +554,7 @@ function filterByWord(word){
 
 function displayCards(j){
   //access properties of objects using index number
-  $('#result').append( '<div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 text-center">' +
+  $('#result').append( '<div id="myCatCard" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 text-center">' +
                           '<div class="card text-danger" >' +
                              '<img src="images/' + cats[j].photo + '" class="card-img-top" alt="' + cats[j].breed + '">' +
                              '<div class="card-body">' +
